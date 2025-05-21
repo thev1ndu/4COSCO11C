@@ -7,5 +7,5 @@ docker run -d -p 80:80 --name web web:latest
 ```
 
 ```
-docker-compose up -d --build
+docker-compose up --build
 ```
