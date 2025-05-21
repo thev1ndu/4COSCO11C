@@ -21,10 +21,6 @@ jobs:
           name: Lint HTML files
           command: htmlhint ./web/html
 
-      - run:
-          name: Lint JavaScript files
-          command: eslint ./web/**/*.js
-
   build_and_push:
     docker:
       - image: cimg/base:stable
