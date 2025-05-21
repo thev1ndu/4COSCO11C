@@ -1,0 +1,76 @@
+version: 2.1
+
+executors:
+  node-docker:
+    docker:
+      - image: cimg/node:18.20.0
+    working_directory: ~/repo
+
+jobs:
+  lint:
+    executor: node-docker
+    steps:
+      - checkout
+
+      - run:
+          name: Install linters
+          command: |
+            sudo npm install -g htmlhint eslint
+
+      - run:
+          name: Lint HTML files
+          command: htmlhint ./web/html
+
+      - run:
+          name: Lint JavaScript files
+          command: eslint ./web/**/*.js
+
+  build_and_push:
+    docker:
+      - image: cimg/base:stable
+    steps:
+      - checkout
+
+      - setup_remote_docker
+
+      - run:
+          name: Log in to Docker Hub
+          command: echo "$DOCKERHUB_TOKEN" | docker login -u "$DOCKERHUB_USERNAME" --password-stdin
+
+      - run:
+          name: Build Docker image
+          command: docker build -t $DOCKERHUB_USERNAME/nginx-web:latest ./web
+
+      - run:
+          name: Push Docker image
+          command: docker push $DOCKERHUB_USERNAME/nginx-web:latest
+
+  deploy:
+    docker:
+      - image: cimg/base:stable
+    steps:
+      - add_ssh_keys:
+          fingerprints:
+            - "YOUR_SSH_KEY_FINGERPRINT"
+
+      - run:
+          name: Deploy via SSH
+          command: |
+            ssh -o StrictHostKeyChecking=no $REMOTE_USER@$REMOTE_HOST << 'EOF'
+              docker pull $DOCKERHUB_USERNAME/nginx-web:latest
+              docker stop nginx_web || true
+              docker rm nginx_web || true
+              docker run -d --name nginx_web -p 80:80 $DOCKERHUB_USERNAME/nginx-web:latest
+            EOF
+
+workflows:
+  version: 2
+  ci_cd_pipeline:
+    jobs:
+      - lint
+      - build_and_push:
+          requires:
+            - lint
+      - deploy:
+          requires:
+            - build_and_push
