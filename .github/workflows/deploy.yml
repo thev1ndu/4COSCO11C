@@ -1,63 +1,27 @@
-name: CI/CD Pipeline
+name: Deploy to Remote Server
 
 on:
   push:
     branches:
-      - main
+      - master 
 
 jobs:
-  lint:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout repo
-        uses: actions/checkout@v3
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: "18"
-
-      - name: Install linters
-        run: |
-          npm install -g htmlhint eslint
-
-      - name: Lint HTML files
-        run: htmlhint ./web/html
-
-      - name: Lint JavaScript files
-        run: eslint ./web/**/*.js
-
-  build_and_push:
-    needs: lint
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout repo
-        uses: actions/checkout@v3
-
-      - name: Log in to Docker Hub
-        uses: docker/login-action@v2
-        with:
-          username: ${{ secrets.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_TOKEN }}
-
-      - name: Build Docker image
-        run: docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/nginx-web:latest ./web
-
-      - name: Push Docker image
-        run: docker push ${{ secrets.DOCKERHUB_USERNAME }}/nginx-web:latest
-
   deploy:
-    needs: build_and_push
+    name: SSH Deploy to Server
     runs-on: ubuntu-latest
+
     steps:
-      - name: Deploy to server via SSH
-        uses: appleboy/ssh-action@v0.1.7
+      - name: ⬇️ Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: 🚀 Deploy via SSH
+        uses: appleboy/ssh-action@v1.0.0
         with:
-          host: ${{ secrets.REMOTE_HOST }}
-          username: ${{ secrets.REMOTE_USER }}
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SSH_KEY }}
           script: |
-            docker pull ${{ secrets.DOCKERHUB_USERNAME }}/nginx-web:latest
-            docker stop nginx_web || true
-            docker rm nginx_web || true
-            docker run -d --name nginx_web -p 80:80 ${{ secrets.DOCKERHUB_USERNAME }}/nginx-web:latest
+            cd /root/cw/4COSCO11C
+            git pull origin main
+            docker-compose build
+            docker-compose up -d
