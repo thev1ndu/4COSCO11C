@@ -24,6 +24,7 @@ jobs:
           script: |
             whoami
             cd /root/cw/4COSCO11C
-            git pull origin main
+            docker-compose down
+            git pull https://github.com/thev1ndu/4COSCO11C
             docker-compose build
             docker-compose up -d
