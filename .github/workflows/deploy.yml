@@ -15,12 +15,14 @@ jobs:
         uses: actions/checkout@v3
 
       - name: 🚀 Deploy via SSH
-        uses: appleboy/ssh-action@v1.0.0
+        uses: appleboy/ssh-action@v1
         with:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USER }}
-          key: ${{ secrets.SSH_KEY }}
+          password: ${{ secrets.SSH_PWD }}
+          port: 22
           script: |
+            whoami
             cd /root/cw/4COSCO11C
             git pull origin main
             docker-compose build
