@@ -1,0 +1,27 @@
+name: Deploy to Remote Server
+
+on:
+  push:
+    branches:
+      - main 
+
+jobs:
+  deploy:
+    name: SSH Deploy to Server
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: ⬇️ Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: 🚀 Deploy via SSH
+        uses: appleboy/ssh-action@v1.0.0
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SSH_KEY }}
+          script: |
+            cd /root/cw/4COSCO11C
+            git pull origin main
+            docker-compose build
+            docker-compose up -d
