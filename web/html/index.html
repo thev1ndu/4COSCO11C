@@ -6,32 +6,52 @@
     <title>IMAGINE.</title>
     <link rel="stylesheet" href="../css/global.css" />
     <link rel="stylesheet" href="../css/res/hero.css" />
+    <link rel="stylesheet" href="../css/res/sections.css" />
+    <link
+      href="https://fonts.cdnfonts.com/css/helvetica-neue-55"
+      rel="stylesheet"
+    />
   </head>
   <body>
     <div class="announcement-bar">
       <div class="announcement-center">🌍 Together for Climate Solutions!</div>
-      <button class="profile-btn">PROFILE</button>
     </div>
 
     <header class="glass-header">
-      <div class="brand">IMAGINE.</div>
-      <nav>
+      <div class="brand">IMAGINE '25</div>
+      <button class="hamburger" id="hamburger">&#9776;</button>
+      <nav id="mobile-nav">
+        <script>
+          const hamburger = document.getElementById("hamburger");
+          const nav = document.getElementById("mobile-nav");
+
+          hamburger.addEventListener("click", () => {
+            nav.classList.toggle("show");
+          });
+        </script>
+
         <ul>
           <li><a href="#">Home</a></li>
           <li><a href="#">Volunteer</a></li>
           <li><a href="#">Initiatives</a></li>
-          <li><a href="#">Profile</a></li>
+
           <li><a href="#">Feedback</a></li>
+          <li>
+            <a href="#" class="profile-btn">Profile</a>
+          </li>
         </ul>
       </nav>
     </header>
+
     <div class="hero-video-wrapper">
       <video autoplay muted loop playsinline class="hero-video">
         <source src="../assets/videos/videoplayback.mp4" type="video/mp4" />
         Your browser does not support the video tag.
       </video>
       <div class="hero-overlay"></div>
+      <div class="hero-bottom-fade"></div>
     </div>
+
     <section class="hero">
       <div class="update-label">
         <span class="pill">NEW</span>
@@ -44,48 +64,290 @@
           Drive awareness, take real action, and inspire others with
           purpose-built solutions that protect our planet.
         </p>
-        <a href="#initiatives" class="cta-button">Explore initiatives</a>
+        <a href="#about" class="cta-button">Explore initiatives</a>
+      </div>
+      <div class="hero-ticker hero-ticker-below">
+        <div class="ticker-card active">
+          <small class="ticker-category">MODELS</small>
+          <p class="ticker-title">
+            Gemini 2.5: Our most intelligent models are getting even better
+          </p>
+          <a href="#" class="ticker-link">🔗</a>
+        </div>
+        <div class="ticker-card">
+          <small class="ticker-category">IMPACT</small>
+          <p class="ticker-title">
+            Over 10,000 volunteers joined our green drive this year!
+          </p>
+          <a href="#" class="ticker-link">🌱</a>
+        </div>
+        <div class="ticker-card">
+          <small class="ticker-category">EVENTS</small>
+          <p class="ticker-title">
+            Join the Global Climate Hackathon – registrations now open
+          </p>
+          <a href="#" class="ticker-link">📅</a>
+        </div>
       </div>
     </section>
 
-    <footer class="footer">
-      <div class="footer-glass">
-        <div class="footer-top">
-          <div class="footer-brand">
-            <div class="footer-logo"><div class="brand">IMAGINE.</div></div>
-            <p class="footer-mission">
-              Reimagining a greener tomorrow. We empower change through
-              education, awareness and united action against climate change.
-            </p>
+    <!-- CLIMATE ACTION SECTION WRAPPER -->
+    <section class="about-visual-section" id="about">
+      <div class="about-visual-grid">
+        <!-- Column 1: Images -->
+        <div class="about-img-grid">
+          <div class="img-box rounded">
+            <img src="./assets/images/section-about-1.jpg" />
           </div>
-
-          <div class="footer-links-group">
-            <div class="footer-col">
-              <h4>Quick Links</h4>
-              <a href="#">Home</a>
-              <a href="#">Volunteer</a>
-              <a href="#">Initiatives</a>
-              <a href="#">Profile</a>
-            </div>
-            <div class="footer-col">
-              <h4>Resources</h4>
-              <a href="#">Blog</a>
-              <a href="#">News</a>
-              <a href="#">Events</a>
-            </div>
-            <div class="footer-col">
-              <h4>Support</h4>
-              <a href="#">Contact</a>
-              <a href="#">Privacy Policy</a>
-              <a href="#">Terms</a>
-            </div>
+          <div class="img-box rounded">
+            <img src="./assets/images/section-about-1.jpg" />
+          </div>
+          <div class="img-box rounded">
+            <img src="./assets/images/section-about-1.jpg" />
+          </div>
+          <div class="img-box rounded">
+            <img src="./assets/images/section-about-1.jpg" />
           </div>
         </div>
 
-        <div class="footer-bottom">
-          <span>© 2025 ImagineAction. Designed with ❤️ for the planet.</span>
+        <!-- Column 2: Main Paragraph -->
+        <div class="about-text">
+          <p>
+            Who are we ? a climate-first collective driven by the belief that
+            meaningful change starts with empowered people and accessible tools.
+            We merge creativity, technology, and community to turn awareness
+            into action crafting scalable solutions that matter. From coding
+            green innovations to leading on-the-ground movements, our mission is
+            simple: a sustainable planet, built together.
+          </p>
+        </div>
+
+        <!-- Column 3: Title Block -->
+        <div class="about-highlight">
+          <div class="vertical-bar"></div>
+          <h3>
+            <p>
+              EMPOWERING COMMUNITIES<br />
+              WITH TECH-DRIVEN<br />
+              CLIMATE SOLUTIONS<br />
+              FOR A SUSTAINABLE<br />
+              AND INCLUSIVE<br />
+              FUTURE.
+            </p>
+          </h3>
         </div>
       </div>
-    </footer>
+    </section>
+
+    <div class="cta-bar">
+      <h2>What are you waiting for?</h2>
+      <a href="#join" class="cta-button">Join Today</a>
+    </div>
+
+    <section class="sdg13-layout">
+      <div class="sdg13-container">
+        <!-- Left Side: Video -->
+        <div class="sdg13-video">
+          <div class="video-frame">
+            <iframe
+              src="https://www.youtube.com/embed/L1YcAbs3bdY?si=SbFlHvoaSq4kAS3s"
+              title="SDG 13 - Climate Action"
+              frameborder="0"
+              allowfullscreen
+            ></iframe>
+          </div>
+        </div>
+
+        <!-- Right Side: Content -->
+        <div class="sdg13-content">
+          <span class="sdg13-label">SDG 13</span>
+          <h2 class="sdg13-heading">Guiding Goals for Change</h2>
+
+          <p>
+            SDG 13 focuses on urgent actions to combat climate change and its
+            impacts. IMAGINE. aligns with this by supporting resilience
+            building, policy reform, and institutional readiness for natural
+            disasters and environmental risk.
+          </p>
+
+          <p>
+            Our initiatives directly support education, awareness, and local
+            capacity building ensuring that communities are equipped to mitigate
+            climate threats, adapt to change, and engage in inclusive climate
+            planning.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="events-section">
+      <div class="events-header">
+        <h2>Upcoming Climate Events</h2>
+        <a href="#all-events" class="view-all">View All</a>
+      </div>
+
+      <div class="events-grid">
+        <a
+          href="#"
+          class="event-card"
+          style="background-image: url('/images/event1.jpg')"
+        >
+          <div class="overlay"></div>
+          <div class="card-content">
+            <div class="date-badge">15 AUG 2025</div>
+            <h3>Urban Green Hackathon</h3>
+            <p>
+              Co-create sustainable urban solutions with global youth
+              innovators.
+            </p>
+          </div>
+        </a>
+
+        <a
+          href="#"
+          class="event-card"
+          style="background-image: url('/images/event2.jpg')"
+        >
+          <div class="overlay"></div>
+          <div class="card-content">
+            <div class="date-badge">02 SEP 2025</div>
+            <h3>Climate Action Summit</h3>
+            <p>
+              Global policy dialogue on urgent climate reforms and resilience
+              strategy.
+            </p>
+          </div>
+        </a>
+
+        <a
+          href="#"
+          class="event-card"
+          style="background-image: url('/images/event3.jpg')"
+        >
+          <div class="overlay"></div>
+          <div class="card-content">
+            <div class="date-badge">21 OCT 2025</div>
+            <h3>Tree Planting Drive</h3>
+            <p>
+              Join 500+ volunteers to reforest coastal communities across Sri
+              Lanka.
+            </p>
+          </div>
+        </a>
+
+        <a
+          href="#"
+          class="event-card"
+          style="background-image: url('/images/event4.jpg')"
+        >
+          <div class="overlay"></div>
+          <div class="card-content">
+            <div class="date-badge">05 NOV 2025</div>
+            <h3>EcoTech Exhibition</h3>
+            <p>
+              Showcasing climate startups and smart innovations for a greener
+              planet.
+            </p>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <section class="climate-wrapper">
+      <!-- ABOUT US -->
+      <div class="bento-grid">
+        <div class="bento-tile bento-highlight">
+          <h2 class="section-title">About Imagine.</h2>
+          <p class="section-desc">
+            I. is a climate-first movement built by creators, developers, and
+            citizens who believe in bold, scalable environmental solutions. We
+            blend grassroots activism with innovative tools to empower change in
+            every community.
+          </p>
+        </div>
+        <div class="bento-tile">
+          <h3 class="tile-heading">🌍 Purpose</h3>
+          <p class="tile-text">
+            To drive actionable, tech-enabled change for a sustainable planet.
+          </p>
+        </div>
+        <div class="bento-tile">
+          <h3 class="tile-heading">🧠 Philosophy</h3>
+          <p class="tile-text">
+            Simplicity, transparency, and inclusivity — rooted in SDG 13:
+            Climate Action.
+          </p>
+        </div>
+        <div class="bento-tile image-tile">
+          <img src="/images/team.jpg" alt="Our team in action" />
+        </div>
+      </div>
+
+      <!-- SDG TARGETS -->
+      <div class="bento-grid">
+        <div class="bento-tile sdg-tile">
+          <h2 class="section-title">SDG 13 Targets</h2>
+          <p class="section-desc">
+            We contribute to the following UN targets with real-world impact:
+          </p>
+        </div>
+        <div class="bento-tile">
+          <h4 class="tile-heading">🎯 Target 13.3</h4>
+          <p class="tile-text">
+            Improve education and awareness about climate change. Our open
+            learning hubs and media campaigns target youth engagement globally.
+          </p>
+        </div>
+        <div class="bento-tile">
+          <h4 class="tile-heading">📊 Indicator 13.3.1</h4>
+          <p class="tile-text">
+            Track participation in climate-related education. We report the
+            number of events, workshops, and users reached through our platform.
+          </p>
+        </div>
+        <div class="bento-tile image-tile dark">
+          <img src="/images/sdg.jpg" alt="SDG visual" />
+        </div>
+      </div>
+
+      <!-- OUR MISSION -->
+      <div class="bento-grid single-column">
+        <div class="bento-tile mission-tile">
+          <h2 class="section-title">Our Mission</h2>
+          <p class="section-desc">
+            To make climate action universal, practical, and inspiring. We
+            believe in collective effort — tech meets activism to drive change.
+            Every tool, event, and story on Imagine. brings us closer to a
+            low-carbon world.
+          </p>
+        </div>
+      </div>
+
+      <!-- NEWSLETTER -->
+      <div class="bento-grid newsletter-section">
+        <div class="bento-tile newsletter-tile">
+          <h2 class="section-title">Subscribe to Our Newsletter</h2>
+          <p class="section-desc">
+            Get monthly updates, impact stories, and exclusive invites to global
+            climate initiatives.
+          </p>
+          <form class="newsletter-form">
+            <input type="email" placeholder="Your email address" required />
+            <button type="submit">Join Now</button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <script>
+      const cards = document.querySelectorAll(".ticker-card");
+      let index = 0;
+
+      setInterval(() => {
+        cards[index].classList.remove("active");
+        index = (index + 1) % cards.length;
+        cards[index].classList.add("active");
+      }, 8000);
+    </script>
   </body>
 </html>

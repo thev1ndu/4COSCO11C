@@ -1,3 +1,5 @@
+@import url("https://fonts.cdnfonts.com/css/helvetica-neue-55");
+
 /* Reset scroll and box model */
 html,
 body {
@@ -42,7 +44,7 @@ body {
 
 /* Video Background */
 .hero-video-wrapper {
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 0;
   width: 100%;
@@ -69,6 +71,16 @@ body {
   z-index: 1;
 }
 
+.hero-bottom-fade {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 200px;
+  background: linear-gradient(to bottom, transparent, #111);
+  z-index: 2;
+  pointer-events: none;
+}
+
 /* Fade-in Animation */
 @keyframes fadeInUp {
   0% {
@@ -76,6 +88,17 @@ body {
     transform: translateY(30px);
   }
   100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
     opacity: 1;
     transform: translateY(0);
   }
@@ -90,7 +113,7 @@ body {
   padding: 6px 14px;
   border-radius: 999px;
   font-size: 0.85rem;
-  color: #f5e9d3;
+  color: #fff;
   gap: 8px;
   margin-bottom: 1.5rem;
   backdrop-filter: blur(4px);
@@ -99,10 +122,12 @@ body {
 .update-label .pill {
   background: #6a5acd;
   color: white;
+  font-family: "Outfit", sans-serif;
   font-weight: bold;
   font-size: 0.75rem;
   padding: 2px 8px;
   border-radius: 999px;
+  font-family: sans-serif;
 }
 
 .update-label .arrow {
@@ -137,16 +162,117 @@ body {
 .cta-button {
   font-family: "Outfit", sans-serif;
   font-size: 1rem;
-  padding: 0.8rem 1.6rem;
-  background: #3a6ff7;
+  padding: 0.9rem 2rem;
+  background: linear-gradient(135deg, hsl(223, 92%, 60%), #6488ea);
   color: white;
   border: none;
-  border-radius: 999px;
+  border-radius: 50px;
   text-decoration: none;
-  transition: background 0.3s ease;
+  transition: all 0.3s ease;
   display: inline-block;
+  box-shadow: 0 6px 14px rgba(58, 111, 247, 0.4);
+  position: relative;
+  overflow: hidden;
+}
+
+.cta-button::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.15);
+  transform: skewX(-20deg);
+  transition: left 0.5s ease;
+}
+
+.cta-button:hover::before {
+  left: 100%;
 }
 
 .cta-button:hover {
-  background: #2e5cd6;
+  background: linear-gradient(135deg, #305edb, #5f7ed6);
+  box-shadow: 0 8px 20px rgba(58, 111, 247, 0.5);
+}
+
+/* ✅ Combined + Cleaned .hero-ticker Section */
+.hero-ticker {
+  position: absolute;
+  bottom: 13rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding: 0 1rem;
+  pointer-events: none;
+}
+
+.ticker-card {
+  pointer-events: auto;
+  background: transparent;
+  backdrop-filter: blur(12px);
+  color: white;
+  border-radius: 1rem;
+  padding: 0.85rem 1.5rem;
+  max-width: 620px;
+  width: 100%;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+  display: none;
+  align-items: center;
+  gap: 1rem;
+  transition: opacity 0.5s ease;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.ticker-card.active {
+  display: flex;
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+.ticker-category {
+  color: #aaa;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.ticker-title {
+  flex: 1;
+  font-size: 1rem;
+  font-weight: 500;
+  margin: 0;
+}
+
+.ticker-link {
+  text-decoration: none;
+  color: #bbb;
+  font-size: 1.1rem;
+  transition: color 0.2s ease;
+}
+
+.ticker-link:hover {
+  color: #fff;
+}
+
+/* Info Styling (if needed elsewhere) */
+.info-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 0.25rem 0 0;
+  line-height: 1.4;
+}
+
+.info-link-icon {
+  font-size: 1.2rem;
+  color: #bbb;
+  transition: color 0.3s ease;
+  text-decoration: none;
+}
+
+.info-link-icon:hover {
+  color: #fff;
 }
