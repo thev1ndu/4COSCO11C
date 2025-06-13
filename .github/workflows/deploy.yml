@@ -22,7 +22,7 @@ jobs:
           password: ${{ secrets.SSH_PWD }}
           port: 22
           script: |
-            cd /root/cw/4COSCO11C
+            cd /root/wflw
             docker-compose down
             git pull https://github.com/thev1ndu/4COSCO11C
             docker-compose build
